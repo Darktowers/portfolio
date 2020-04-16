@@ -1,0 +1,142 @@
+@import '../styles.scss';
+@import '../styles/animations.scss';
+.menuAdjust {
+    display: flex;
+}
+.menu {
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    top: 0;
+    max-width: 150px;
+    width: 100%;
+    animation: .3s move linear;
+
+    @media screen and (max-width: 768px) {
+        max-width: 100%;
+        justify-content: center;
+        animation: none;
+        height: 100px;
+        bottom: 0 !important;
+        top: inherit;
+    }
+
+    @keyframes move {
+        from {
+            transform: translateX(-150px);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    &-main {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 1em;
+
+        @keyframes moveYS {
+            from {
+                transform: translateY(350px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            flex-direction: row;
+            animation: .3s moveYS linear;
+            padding: 1em;
+            align-items: flex-end;
+        }
+
+        &-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1em;
+            outline: none;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all .3s ease-in-out;
+            color: inherit;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            @media screen and (max-width: 768px) {
+                margin-bottom: 0;
+                font-size: 1em;
+                flex-direction: column;
+                margin-right: 1em;
+            }
+
+            .text {
+                @media screen and (max-width: 768px) {
+                    display: none;
+                }
+            }
+
+            &-ani {
+                width: 0;
+                height: 0;
+                transform: scale(0);
+                transition: all .3s ease-in-out;
+            }
+
+            &:hover {
+                color: $hyper-green;
+            }
+
+            &.active {
+                font-size: 1em;
+                color: $hyper-green;
+
+                .menu-main-item-ani {
+                    background: $hyper-purpple;
+                    width: 2em;
+                    height: 2em;
+                    border-radius: 50%;
+                    transform: scale(0.4);
+                    animation-duration: 1s;
+                    animation-name: pulse;
+                    animation-iteration-count: infinite;
+                    animation-direction: alternate;
+                }
+
+                fa-icon {
+                    color: $hyper-purpple;
+                    font-size: 2em;
+                }
+            }
+
+            fa-icon {
+                font-size: 1.8em;
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: inherit;
+                margin-right: .3em;
+
+                @media screen and (max-width: 768px) {
+                    margin-right: 0;
+
+                }
+
+                svg {
+                    width: 32px;
+                    height: 32px;
+                }
+            }
+        }
+    }
+}
